@@ -5,14 +5,16 @@
   "author": "Zheng Jie",
   "license": "Apache-2.0",
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build:prod": "vue-cli-service build",
-    "build:stage": "vue-cli-service build --mode staging",
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service serve",
+    "build:prod": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build",
+    "build:stage": "cross-env NODE_OPTIONS=--openssl-legacy-provider vue-cli-service build --mode staging",
     "preview": "node build/index.js --preview",
     "lint": "eslint --ext .js,.vue src",
-    "test:unit": "jest --clearCache && vue-cli-service test:unit",
     "svgo": "svgo -f src/assets/icons/svg --config=src/assets/icons/svgo.yml",
-    "new": "plop"
+    "new": "plop",
+    "tauri": "tauri",
+    "tauri:dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider tauri dev",
+    "tauri:build": "tauri build"
   },
   "husky": {
     "hooks": {
@@ -34,6 +36,8 @@
   },
   "dependencies": {
     "@riophae/vue-treeselect": "^0.4.0",
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2",
     "@wangeditor/editor": "^5.1.23",
     "@wangeditor/editor-for-vue": "^1.0.2",
     "axios": "1.8.2",
@@ -71,6 +75,7 @@
   "devDependencies": {
     "@babel/parser": "^7.7.4",
     "@babel/register": "7.0.0",
+    "@tauri-apps/cli": "^2",
     "@vue/babel-plugin-transform-vue-jsx": "^1.2.1",
     "@vue/cli-plugin-babel": "3.5.3",
     "@vue/cli-plugin-eslint": "^3.9.1",
@@ -87,6 +92,7 @@
     "chokidar": "2.1.5",
     "compression-webpack-plugin": "5.0.2",
     "connect": "3.6.6",
+    "cross-env": "^10.1.0",
     "eslint": "5.15.3",
     "eslint-plugin-vue": "5.2.2",
     "html-webpack-plugin": "3.2.0",
